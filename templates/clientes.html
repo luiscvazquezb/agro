@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Clientes registrados</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .header-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .table td, .table th {
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-buttons">
+      <h2>Clientes registrados</h2>
+      <div>
+        <a href="/nuevo-cliente" class="btn btn-success me-2">Agregar Cliente</a>
+        <a href="/logout" class="btn btn-outline-danger">Cerrar sesión</a>
+      </div>
+    </div>
+
+    <form method="GET" action="/clientes" class="mb-4">
+      <div class="input-group">
+        <input type="text" class="form-control" name="buscar" placeholder="Buscar por nombre..." value="{{ request.args.get('buscar', '') }}">
+        <button class="btn btn-primary" type="submit">Buscar</button>
+      </div>
+    </form>
+
+    {% if clientes %}
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Representante</th>
+          <th>Teléfono</th>
+          <th>WhatsApp</th>
+          <th>Correo</th>
+          <th>Color</th>
+          <th>Página</th>
+          <th>Password</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in clientes %}
+        <tr>
+          <td>{{ c.nombre }}</td>
+          <td>{{ c.representante }}</td>
+          <td>{{ c.telefono }}</td>
+          <td>{{ c.whatsapp }}</td>
+          <td>{{ c.correo }}</td>
+          <td style="background-color: {{ c.colorhex }};">{{ c.colorhex }}</td>
+          <td>{{ c.pagina }}</td>
+          <td>{{ c.password }}</td>
+          <td>
+            <a href="/editar-cliente/{{ c.id }}" class="btn btn-sm btn-warning">Editar</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p>No hay clientes registrados.</p>
+    {% endif %}
+  </div>
+</body>
+</html>

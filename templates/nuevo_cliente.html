@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrar nuevo cliente</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 30px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+  button.btn-registrar,
+  a.btn-volver {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  font-size: 16px;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+    .btn-registrar {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .btn-registrar:hover {
+      background-color: #45a049;
+    }
+    .btn-volver {
+      background-color: #6c757d;
+      color: white;
+    }
+    .btn-volver:hover {
+      background-color: #5a6268;
+    }
+    .flash-message {
+      color: green;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Registrar nuevo cliente</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash-message">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" onsubmit="unificarTelefono();">
+      <label>Nombre del Cliente:
+        <input type="text" name="nombre" required>
+      </label>
+
+      <label>Representante:
+        <input type="text" name="representante" required>
+      </label>
+
+      <label>Teléfono:</label>
+<br>
+        <input type="tel" id="telefono_visible" required>
+        <input type="hidden" name="telefono" id="telefono" required>
+      </label>
+
+      <label>WhatsApp:</label>
+<br>
+        <input type="tel" id="whatsapp_visible">
+        <input type="hidden" name="whatsapp" id="whatsapp">
+      </label>
+
+      <label>Telegram:
+        <input type="text" name="telegram">
+      </label>
+
+      <label>Correo:
+        <input type="email" name="correo" required>
+      </label>
+
+      <label>Logo URL:
+        <input type="text" name="logo_url">
+      </label>
+
+      <label>Color HEX:
+        <input type="text" name="colorhex" placeholder="#FFFFFF">
+      </label>
+
+      <label>Página:
+        <input type="text" name="pagina">
+     </label>
+
+     <label>Password:
+        <input type="text" name="password">
+     </label>
+
+
+      <button type="submit" class="btn btn-registrar">Registrar</button>
+<br>
+
+<button type="button" class="btn btn-volver mt-3" onclick="window.location.href='/clientes'">Volver</button>
+
+    </form>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+  <script>
+    const inputTel = document.querySelector("#telefono_visible");
+    const inputWhats = document.querySelector("#whatsapp_visible");
+
+    const itiTel = window.intlTelInput(inputTel, {
+      initialCountry: "mx",
+      preferredCountries: ["mx", "us", "co", "ar", "es"],
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+    });
+
+    const itiWhats = window.intlTelInput(inputWhats, {
+      initialCountry: "mx",
+      preferredCountries: ["mx", "us", "co", "ar", "es"],
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+    });
+
+    function unificarTelefono() {
+      document.querySelector("#telefono").value = itiTel.getNumber();
+      document.querySelector("#whatsapp").value = itiWhats.getNumber();
+    }
+  </script>
+</body>
+</html>
