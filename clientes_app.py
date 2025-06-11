@@ -72,7 +72,9 @@ def editar_cliente(id):
             "telegram": request.form.get("telegram"),
             "correo": request.form.get("correo"),
             "logo_url": request.form.get("logo_url"),
-            "colorhex": request.form.get("colorhex")
+            "colorhex": request.form.get("colorhex"),
+            "pagina": request.form.get("pagina"),
+            "password": request.form.get("password")
         }
         try:
             supabase.table("clientes").update(datos).eq("id", str(id)).execute()
