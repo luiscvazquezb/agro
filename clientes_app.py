@@ -74,7 +74,8 @@ def editar_cliente(id):
             "logo_url": request.form.get("logo_url"),
             "colorhex": request.form.get("colorhex"),
             "pagina": request.form.get("pagina"),
-            "password": request.form.get("password")
+            "password": request.form.get("password"),
+            "username": request.form.get("username")
         }
         try:
             supabase.table("clientes").update(datos).eq("id", str(id)).execute()
@@ -112,8 +113,8 @@ def nuevo_cliente():
             "logo_url": request.form.get("logo_url"),
             "colorhex": request.form.get("colorhex"),
             "pagina": request.form.get("pagina"),
-            "password": request.form.get("password")
-
+            "password": request.form.get("password"),
+            "username": request.form.get("username")
         }
 
         try:

@@ -51,6 +51,7 @@
           <th>Correo</th>
           <th>Color</th>
           <th>Página</th>
+          <th>Username</th>
           <th>Password</th>
           <th>Acciones</th>
         </tr>
@@ -65,6 +66,7 @@
           <td>{{ c.correo }}</td>
           <td style="background-color: {{ c.colorhex }};">{{ c.colorhex }}</td>
           <td>{{ c.pagina }}</td>
+          <td>{{ c.username }}</td>
           <td>{{ c.password }}</td>
           <td>
             <a href="/editar-cliente/{{ c.id }}" class="btn btn-sm btn-warning">Editar</a>
