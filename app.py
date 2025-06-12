@@ -16,9 +16,9 @@ configure_app(app)
 # Registrar módulos (blueprints)
 app.register_blueprint(auth_bp)
 app.register_blueprint(clientes_bp)
-app.register_blueprint(usuarios_bp)
-app.register_blueprint(sectores_bp)
-app.register_blueprint(produccion_bp)
+#app.register_blueprint(usuarios_bp)
+#app.register_blueprint(sectores_bp)
+#app.register_blueprint(produccion_bp)
 
 # Página de inicio redirige a login
 @app.route("/")
