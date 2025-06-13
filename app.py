@@ -2,6 +2,7 @@
 
 from flask import Flask
 from config import configure_app
+from flask import redirect
 
 # Importar los blueprints
 from routes.auth import auth_bp
@@ -23,7 +24,7 @@ app.register_blueprint(clientes_bp)
 # Página de inicio redirige a login
 @app.route("/")
 def index():
-    return "Bienvenido a AgroApp. Usa /login para ingresar."
+    return redirect("/login")
 
 if __name__ == '__main__':
     app.run(debug=True)
