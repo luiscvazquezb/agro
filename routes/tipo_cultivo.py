@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, flash, session
 from supabase_client import supabase
-from utils import is_authenticated, is_admin
+from routes.utils import is_authenticated, is_admin
 
 tipo_cultivo_bp = Blueprint('tipo_cultivo', __name__)
 

@@ -1,11 +1,44 @@
-# Entornos virtuales
-venv/
+# Estructura recomendada del proyecto Flask (agro_app)
+
+agro_app/
+│
+├── app.py                     # Punto de entrada principal de la aplicación
+├── utils.py                   # Funciones de ayuda reutilizables, accesibles globalmente
+├── supabase_client.py         # Configuración y conexión a Supabase
+├── requirements.txt           # Lista de dependencias del proyecto para Render/deploy local
+├── .gitignore                 # Archivos/carpetas que Git debe ignorar
+│
+├── routes/                    # Carpeta modular para blueprints
+│   ├── auth.py                # Login/logout y validación de sesión
+│   ├── menu.py                # Renderizado del menú principal
+│   ├── clientes.py            # Gestión de clientes
+│   ├── tipo_cultivo.py        # Alta y consulta de tipos de cultivo
+│   ├── variedades.py          # Gestión de variedades por tipo de cultivo
+│   └── ...                    # Otros módulos futuros: producción, sectores, etc.
+│
+├── templates/                 # HTML renderizado por Jinja2
+│   ├── login.html             # Pantalla de inicio de sesión
+│   ├── menu.html              # Menú principal
+│   ├── tipo_cultivo.html      # Vista para tipos de cultivo
+│   ├── variedades.html        # Vista para variedades
+│   └── ...                    # Otros HTML por módulo
+│
+├── static/                    # Archivos estáticos (imágenes, CSS, JS)
+│   └── images/                # Logos, íconos, etc.
+
+.gitignore:
+# Ocultar archivos innecesarios para control de versiones
 __pycache__/
 *.pyc
-
-# Archivos de entorno
 .env
-
-# Otros
+.vscode/
+venv/
+.venv/
 .DS_Store
-*.sqlite3
+
+requirements.txt:
+# Asegúrate de tener todas tus dependencias aquí para Render
+gunicorn
+Flask
+supabase
+python-dotenv
