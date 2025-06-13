@@ -29,7 +29,7 @@ def login():
             return redirect('/menu')
 
         # 2. Validación contra Supabase
-        result = supabase.table("clientes").select("*").eq("nombre", usuario).eq("password", password).execute()
+        result = supabase.table("clientes").select("*").eq("username", usuario).eq("password", password).execute()
         data = result.data
 
         if data:
