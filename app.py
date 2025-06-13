@@ -2,6 +2,8 @@ from flask import Flask, session, redirect, render_template
 from routes.auth import auth_bp
 from routes.menu import menu_bp
 from routes.clientes import clientes_bp
+from routes.variedades import variedades_bp
+from routes.tipo_cultivo import tipo_cultivo_bp
 import os
 
 app = Flask(__name__)
@@ -9,6 +11,8 @@ app.secret_key = 'clave_secreta'
 app.register_blueprint(auth_bp)
 app.register_blueprint(menu_bp)
 app.register_blueprint(clientes_bp)
+app.register_blueprint(variedades_bp)
+app.register_blueprint(tipo_cultivo_bp)
 
 
 @app.route('/menu')
