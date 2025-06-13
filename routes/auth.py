@@ -1,17 +1,12 @@
 from flask import Blueprint, render_template, request, redirect, flash, session
-from supabase import create_client
-import os
+from supabase_client import supabase  # Carga conexión desde supabase_client.py
+from routes.utils import is_authenticated, is_admin  # Opcional si lo quieres usar luego
 
 auth_bp = Blueprint('auth', __name__)
 
 # Usuario maestro fijo (admin general)
 USUARIO_VALIDO = "adminagro"
 PASSWORD_VALIDA = "Admin@123Agro"
-
-# Conexión a Supabase
-SUPABASE_URL = os.environ.get("SUPABASE_URL")
-SUPABASE_API_KEY = os.environ.get("SUPABASE_API_KEY")
-supabase = create_client(SUPABASE_URL, SUPABASE_API_KEY)
 
 @auth_bp.route('/', methods=['GET', 'POST'])
 def login():
@@ -24,6 +19,7 @@ def login():
         if usuario == USUARIO_VALIDO and password == PASSWORD_VALIDA:
             session['cliente'] = 'ADMIN'
             session['cliente_id'] = 0
+            session['autenticado'] = True
             session['es_admin'] = True
             print("✅ Login como administrador")
             return redirect('/menu')
@@ -35,6 +31,7 @@ def login():
         if data:
             session['cliente'] = data[0]['nombre']
             session['cliente_id'] = data[0]['id']
+            session['autenticado'] = True
             session['es_admin'] = False
             print("✅ Login cliente Supabase:", data[0]['nombre'])
             return redirect('/menu')

@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, flash, session, abort
+from routes.utils import is_authenticated, is_admin
 from supabase_client import supabase
 
 clientes_bp = Blueprint('clientes', __name__)

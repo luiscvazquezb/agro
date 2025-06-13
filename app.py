@@ -1,12 +1,15 @@
 from flask import Flask, session, redirect, render_template
 from routes.auth import auth_bp
 from routes.menu import menu_bp
+from routes.clientes import clientes_bp
 import os
 
 app = Flask(__name__)
 app.secret_key = 'clave_secreta'
 app.register_blueprint(auth_bp)
 app.register_blueprint(menu_bp)
+app.register_blueprint(clientes_bp)
+
 
 @app.route('/menu')
 def menu():
@@ -19,19 +22,6 @@ def menu():
 
     return render_template('menu.html', cliente=session['cliente'])
 
-@app.route('/clientes')
-def ver_clientes():
-    if not session.get('es_admin'):
-        return redirect('/menu')
-
-    buscar = request.args.get('buscar', '').strip().lower()
-    result = supabase.table("clientes").select("*").execute()
-    clientes = result.data
-
-    if buscar:
-        clientes = [c for c in clientes if buscar in c.get('nombre', '').lower()]
-
-    return render_template("clientes.html", clientes=clientes)
 
 
 if __name__ == '__main__':
