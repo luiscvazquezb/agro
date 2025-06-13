@@ -8,10 +8,6 @@ app.secret_key = 'clave_secreta'
 # Conexión a Supabase
 SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_API_KEY = os.environ.get("SUPABASE_API_KEY")
-
-print("🔍 SUPABASE_URL:", SUPABASE_URL)
-print("🔐 SUPABASE_API_KEY:", SUPABASE_API_KEY)
-
 supabase = create_client(SUPABASE_URL, SUPABASE_API_KEY)
 
 
