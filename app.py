@@ -1,5 +1,5 @@
 from flask import Flask, session, redirect, render_template
-from auth import auth_bp
+from routes.auth import auth_bp
 import os
 
 app = Flask(__name__)
