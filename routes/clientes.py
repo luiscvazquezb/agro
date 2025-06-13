@@ -24,8 +24,8 @@ def ver_clientes():
 
 @clientes_bp.route('/nuevo-cliente', methods=['GET', 'POST'])
 def nuevo_cliente():
-    if not session.get('autenticado'):
-        return redirect('/login')
+    if not session.get('es_admin'):
+        return redirect('/menu')
 
     if request.method == 'POST':
         datos = {
