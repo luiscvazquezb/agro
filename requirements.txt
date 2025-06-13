@@ -47,6 +47,7 @@ pyparsing==3.2.3
 pytest==8.4.0
 pytest-mock==3.14.1
 python-dateutil==2.9.0.post0
+python-dotenv
 realtime==2.4.3
 requests==2.32.3
 requests-oauthlib==2.0.0
