@@ -1,13 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Panel de {{ cliente }}</title>
+  <meta charset="UTF-8">
+  <title>Menú principal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-top: 20px;
+      margin-bottom: 30px;
+      font-size: 1.8em;
+    }
+
+    .grid-menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .menu-btn {
+      background-color: #ffffff;
+      border: 2px solid #28a745;
+      border-radius: 12px;
+      padding: 20px 10px;
+      text-align: center;
+      font-weight: bold;
+      color: #28a745;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1em;
+    }
+
+    .menu-btn:hover {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .logout-btn {
+      margin-top: 30px;
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: #c0392b;
+    }
+
+    @media (max-width: 500px) {
+      .menu-btn {
+        padding: 16px 10px;
+        font-size: 0.9em;
+      }
+
+      .logout-btn {
+        padding: 10px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Bienvenido, {{ cliente }}</h1>
-    <form action="/sectores"><button>🧱 Sectores</button></form>
-    <form action="/produccion"><button>🌾 Producción</button></form>
-    <form action="/personal"><button>👥 Personal</button></form>
-    <form action="/logout"><button>Cerrar sesión</button></form>
+
+  <h2>Bienvenido, {{ cliente }}</h2>
+
+  <div class="grid-menu">
+    <a href="/sectores" class="menu-btn">Sectores</a>
+    <a href="/produccion" class="menu-btn">Producción</a>
+    <a href="/personal" class="menu-btn">Personal</a>
+    <a href="/tipos-cultivo" class="menu-btn">Tipos de Cultivo</a>
+    <a href="/reportes" class="menu-btn">Reportes</a>
+    <a href="/configuracion" class="menu-btn">Configuración</a>
+    <!-- Puedes agregar más botones aquí sin romper el diseño -->
+  </div>
+
+  <a href="/logout" class="logout-btn">Cerrar sesión</a>
+
 </body>
-</html>
+</html
