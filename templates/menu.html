@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Panel - {{ cliente }}</title>
+    <title>Panel de {{ cliente }}</title>
 </head>
 <body>
     <h1>Bienvenido, {{ cliente }}</h1>
     <form action="/sectores"><button>🧱 Sectores</button></form>
     <form action="/produccion"><button>🌾 Producción</button></form>
     <form action="/personal"><button>👥 Personal</button></form>
+    <form action="/logout"><button>Cerrar sesión</button></form>
 </body>
 </html>
