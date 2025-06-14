@@ -4,7 +4,7 @@ from routes.utils import is_authenticated, is_admin
 
 tipo_cultivo_bp = Blueprint('tipo_cultivo', __name__)
 
-@tipo_cultivo_bp.route('/tipo-cultivo', methods=['GET', 'POST'])
+@tipo_cultivo_bp.route('/tipos-cultivo', methods=['GET', 'POST'])
 def tipo_cultivo():
     if not is_authenticated() or not is_admin():
         return redirect('/login')
