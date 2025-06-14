@@ -2,10 +2,10 @@ from flask import Blueprint, render_template, request, redirect, flash, session
 from supabase_client import supabase
 from routes.utils import is_authenticated, is_admin
 
-tipo_cultivo_bp = Blueprint('tipo_cultivo', __name__)
+tipos_cultivo_bp = Blueprint('tipos_cultivo', __name__)
 
-@tipo_cultivo_bp.route('/tipos-cultivo', methods=['GET', 'POST'])
-def tipo_cultivo():
+@tipos_cultivo_bp.route('/tipos-cultivo', methods=['GET', 'POST'])
+def tipos_cultivo():
     if not is_authenticated() or not is_admin():
         return redirect('/login')
 
@@ -18,18 +18,18 @@ def tipo_cultivo():
             flash("Todos los campos son obligatorios.", "warning")
         else:
             try:
-                supabase.table("tipo_cultivo").insert({
+                supabase.table("tipos_cultivo").insert({
                     "nombre": nombre.strip(),
                     "unidad_id": unidad_id
                 }).execute()
                 flash("✅ Tipo de cultivo agregado correctamente", "success")
-                return redirect('/tipo-cultivo')
+                return redirect('/tipos-cultivo')
             except Exception as e:
                 flash(f"❌ Error al agregar tipo de cultivo: {str(e)}", "danger")
 
     # Obtener lista de tipos de cultivo y unidades
     try:
-        cultivos_data = supabase.from_("tipo_cultivo").select("id, nombre, unidad_id").execute().data
+        cultivos_data = supabase.from_("tipos_cultivo").select("id, nombre, unidad_id").execute().data
         unidades_data = supabase.from_("unidades").select("id, nombre").execute().data
 
         # Asociar nombre de unidad a cada cultivo
@@ -42,4 +42,4 @@ def tipo_cultivo():
         cultivos_data = []
         unidades_data = []
 
-    return render_template("tipo_cultivo.html", cultivos=cultivos_data, unidades=unidades_data)
+    return render_template("tipos_cultivo.html", cultivos=cultivos_data, unidades=unidades_data)
