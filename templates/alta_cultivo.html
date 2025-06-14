@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nuevo Tipo de Cultivo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Registrar nuevo tipo de cultivo</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" required>
+      </div>
+      <div class="mb-3">
+        <label for="nombre_cientifico" class="form-label">Nombre científico</label>
+        <input type="text" class="form-control" id="nombre_cientifico" name="nombre_cientifico">
+      </div>
+      <div class="mb-3">
+        <label for="nombre_comercial" class="form-label">Nombre comercial</label>
+        <input type="text" class="form-control" id="nombre_comercial" name="nombre_comercial">
+      </div>
+      <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="unidad_produccion" class="form-label">Unidad de producción</label>
+        <input type="text" class="form-control" id="unidad_produccion" name="unidad_produccion">
+      </div>
+      <div class="mb-3">
+        <label for="categoria" class="form-label">Categoría</label>
+        <input type="text" class="form-control" id="categoria" name="categoria">
+      </div>
+      <div class="mb-3">
+        <label for="ciclo_dias" class="form-label">Duración estimada del ciclo (en días)</label>
+        <input type="number" class="form-control" id="ciclo_dias" name="ciclo_dias">
+      </div>
+
+      <div class="mb-3">
+        <label for="variedad_id" class="form-label">Variedad (opcional)</label>
+        <select class="form-select" id="variedad_id" name="variedad_id">
+          <option value="">-- Seleccionar --</option>
+          {% for v in variedades %}
+            <option value="{{ v.id }}">{{ v.nombre }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="porta_injerto_id" class="form-label">Porta injerto (opcional)</label>
+        <select class="form-select" id="porta_injerto_id" name="porta_injerto_id">
+          <option value="">-- Seleccionar --</option>
+          {% for i in injertos %}
+            <option value="{{ i.id }}">{{ i.nombre }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-success">Guardar</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

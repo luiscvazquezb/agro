@@ -15,6 +15,7 @@ app.register_blueprint(variedades_bp)
 app.register_blueprint(tipo_cultivo_bp)
 
 
+
 @app.route('/menu')
 def menu():
     if 'cliente' not in session:
